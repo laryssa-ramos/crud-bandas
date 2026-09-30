@@ -1,0 +1,29 @@
+<h1>Bandas</h1>
+
+<input type="text" placeholder="Nome da Banda" [(ngModel)]="nome">
+<input type="number" placeholder="Ano" [(ngModel)]="ano">
+<input type="text" placeholder="URL da imagem" [(ngModel)]="imagem">
+
+@if(idEditando === null){
+    <button (click)="salvar()" [disabled]="!formularioValido()">Salvar</button>
+}@else{
+    <button (click)="atualizar()">Atualizar</button>
+    <button (click)="cancelar()">Cancelar</button>
+}
+
+<hr>
+
+<ul>
+    @for (banda of bandas; track banda.id){
+        <li>
+            {{banda.nome}} - {{banda.ano}} -  <img [src]="banda.imagem" [alt]="banda.nome" width="100">
+             <button (click)="editar(banda)">Editar</button>
+             <button (click)="excluir(banda.id!)">Excluir</button>
+        </li>
+        
+    }
+
+   
+</ul>
+
+<button (click)="logout()">Sair</button>
