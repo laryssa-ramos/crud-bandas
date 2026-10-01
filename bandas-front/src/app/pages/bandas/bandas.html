@@ -1,15 +1,52 @@
-<h1>Bandas</h1>
 
-<input type="text" placeholder="Nome da Banda" [(ngModel)]="nome">
-<input type="number" placeholder="Ano" [(ngModel)]="ano">
-<input type="text" placeholder="URL da imagem" [(ngModel)]="imagem">
+<mat-toolbar class="toolbar">
+    <span>Crud de Bandas</span>
 
-@if(idEditando === null){
-    <button (click)="salvar()" [disabled]="!formularioValido()">Salvar</button>
-}@else{
-    <button (click)="atualizar()">Atualizar</button>
-    <button (click)="cancelar()">Cancelar</button>
-}
+    <span class="spacer"></span>
+
+    <button matButton="tonal" class="botao-sair" (click)="logout()"><mat-icon>logout</mat-icon>Sair</button>
+</mat-toolbar>
+
+<div class="formulario">
+
+  <mat-form-field appearance="outline">
+    <mat-label>Nome da banda</mat-label>
+    <input matInput type="text"[(ngModel)]="nome">
+  </mat-form-field>
+
+  <mat-form-field appearance="outline">
+    <mat-label>Ano de formação</mat-label>
+    <input matInput type="number" [(ngModel)]="ano">
+  </mat-form-field>
+
+  <mat-form-field appearance="outline">
+    <mat-label>URL da imagem</mat-label>
+    <input matInput  type="text"  [(ngModel)]="imagem">
+  </mat-form-field>
+
+  @if (idEditando === null) {
+    <button
+      mat-flat-button
+      (click)="salvar()"
+      [disabled]="!formularioValido()">
+      Salvar
+    </button>
+  } @else {
+    <button
+      mat-flat-button
+      (click)="atualizar()"
+      [disabled]="!formularioValido()">
+      Atualizar
+    </button>
+
+    <button
+      matButton="tonal"
+      (click)="cancelar()">
+      Cancelar
+    </button>
+  }
+
+</div>
 
 <hr>
 
@@ -22,8 +59,5 @@
         </li>
         
     }
-
-   
 </ul>
 
-<button (click)="logout()">Sair</button>

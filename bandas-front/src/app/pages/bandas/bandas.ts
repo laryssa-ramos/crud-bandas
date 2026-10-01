@@ -4,11 +4,16 @@ import { Router } from '@angular/router';
 import { Banda } from '../../models/banda';
 import { BandaService } from '../../services/banda.service';
 import { FormsModule } from '@angular/forms';
+import { MatToolbar } from '@angular/material/toolbar';
+import { MatIcon } from '@angular/material/icon';
+import { MatButtonModule } from '@angular/material/button';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
 
 
 @Component({
   selector: 'app-bandas',
-  imports: [FormsModule],
+  imports: [FormsModule, MatToolbar, MatIcon, MatButtonModule, MatFormFieldModule, MatInputModule],
   templateUrl: './bandas.html',
   styleUrl: './bandas.css',
 })
