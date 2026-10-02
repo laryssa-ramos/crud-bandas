@@ -10,6 +10,8 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatTableModule } from '@angular/material/table';
+import { MatDialog } from '@angular/material/dialog';
+import { ConfirmacaoDialog } from '../../components/confirmacao-dialog/confirmacao-dialog';
 
 
 @Component({
@@ -30,7 +32,7 @@ export class Bandas {
   idEditando: number | null = null;
 
   constructor(
-    private authService: AuthService, private router :Router, private bandaService: BandaService){}
+    private authService: AuthService, private router :Router, private bandaService: BandaService, private dialog: MatDialog){}
 
   ngOnInit(): void{
     
@@ -120,9 +122,10 @@ cancelar(){
 }
 
  excluir(id: number){
-  const confirmar = confirm ('Tem certeza que deseja excluir essa banda?');
- 
-  if(!confirmar) return;
+  const dialogRef = this.dialog.open(ConfirmacaoDialog)
+
+  dialogRef.afterClosed().subscribe(confirmou => {
+     if(!confirmou) return;
   
     this.bandaService.excluir(id).subscribe({
       next:() =>{
@@ -132,6 +135,8 @@ cancelar(){
         console.log(erro);
       }
     })
+  })
+
   }
 
 
