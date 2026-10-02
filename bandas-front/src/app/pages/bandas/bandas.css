@@ -1,5 +1,5 @@
 
-
+/*---TOOLBAR---*/
 .toolbar{
     font-family: "Grenze Gotisch", serif;
     background-color: var(--mat-sys-primary);
@@ -21,6 +21,7 @@
     margin-right: 4px;
 }
 
+/*---FORMULARIO---*/
 
 .formulario {
   display: flex;
@@ -36,4 +37,49 @@
 
 .formulario button {
   height: 56px;
+}
+
+/*---TABELA---*/
+
+.tabela {
+  width: calc(100% - 48px);
+  margin: 24px;
+}
+
+.imagem-banda {
+  width: 60px;
+  height: 60px;
+  object-fit: cover;
+  border-radius: 8px;
+}
+
+mat-cell,
+mat-header-cell {
+  padding: 8px 16px;
+}
+
+mat-header-cell {
+  font-weight: 600;
+}
+
+
+.tabela {
+  width: calc(100% - 48px);
+  margin: 24px;
+}
+
+.imagem-banda {
+  width: 60px;
+  height: 60px;
+  object-fit: cover;
+  border-radius: 8px;
+}
+
+mat-cell,
+mat-header-cell {
+  padding: 8px 16px;
+}
+
+mat-header-cell {
+  font-weight: 600;
 }

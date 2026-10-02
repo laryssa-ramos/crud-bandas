@@ -25,39 +25,59 @@
   </mat-form-field>
 
   @if (idEditando === null) {
-    <button
-      mat-flat-button
-      (click)="salvar()"
-      [disabled]="!formularioValido()">
+    <button mat-flat-button (click)="salvar()" [disabled]="!formularioValido()">
       Salvar
     </button>
   } @else {
     <button
-      mat-flat-button
-      (click)="atualizar()"
-      [disabled]="!formularioValido()">
+      mat-flat-button (click)="atualizar()" [disabled]="!formularioValido()">
       Atualizar
     </button>
 
-    <button
-      matButton="tonal"
-      (click)="cancelar()">
+    <button matButton="tonal" (click)="cancelar()">
       Cancelar
     </button>
   }
 
 </div>
 
-<hr>
+<mat-table [dataSource]="bandas" class="tabela">
+  <ng-container matColumnDef="nome">
+    <mat-header-cell *matHeaderCellDef>Nome</mat-header-cell>
+    <mat-cell *matCellDef="let banda">
+      {{banda.nome}}
+    </mat-cell>
+  </ng-container>
 
-<ul>
-    @for (banda of bandas; track banda.id){
-        <li>
-            {{banda.nome}} - {{banda.ano}} -  <img [src]="banda.imagem" [alt]="banda.nome" width="100">
-             <button (click)="editar(banda)">Editar</button>
-             <button (click)="excluir(banda.id!)">Excluir</button>
-        </li>
-        
-    }
-</ul>
+  <ng-container matColumnDef="ano">
+    <mat-header-cell *matHeaderCellDef>Ano de Formação</mat-header-cell>
+    <mat-cell *matCellDef="let banda">
+     {{banda.ano}}
+    </mat-cell>
+  </ng-container>
 
+  <ng-container matColumnDef="imagem">
+    <mat-header-cell *matHeaderCellDef>imagem</mat-header-cell>
+    <mat-cell *matCellDef="let banda">
+      <img [src]="banda.imagem" [alt]="banda.nome" class="imagem-banda">
+    </mat-cell>
+  </ng-container>
+
+  <ng-container matColumnDef="acoes">
+    <mat-header-cell *matHeaderCellDef>Ações</mat-header-cell>
+
+    <mat-cell *matCellDef="let banda">
+      <button mat-icon-button (click)="editar(banda)">
+        <mat-icon>edit</mat-icon>
+      </button>
+
+       <button mat-icon-button (click)="excluir(banda.id!)"  [disabled]="idEditando !== null">
+        <mat-icon>delete</mat-icon>
+      </button>
+    </mat-cell>
+
+    <mat-header-row *matHeaderRowDef="colunasExibidas"></mat-header-row>
+    <mat-row *matRowDef="let row; columns: colunasExibidas"></mat-row>
+  </ng-container>
+ 
+</mat-table>

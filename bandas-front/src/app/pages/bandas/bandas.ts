@@ -5,21 +5,23 @@ import { Banda } from '../../models/banda';
 import { BandaService } from '../../services/banda.service';
 import { FormsModule } from '@angular/forms';
 import { MatToolbar } from '@angular/material/toolbar';
-import { MatIcon } from '@angular/material/icon';
+import { MatIcon, MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
+import { MatTableModule } from '@angular/material/table';
 
 
 @Component({
   selector: 'app-bandas',
-  imports: [FormsModule, MatToolbar, MatIcon, MatButtonModule, MatFormFieldModule, MatInputModule],
+  imports: [FormsModule, MatToolbar, MatIcon, MatButtonModule, MatFormFieldModule, MatInputModule, MatTableModule, MatIconModule],
   templateUrl: './bandas.html',
   styleUrl: './bandas.css',
 })
 export class Bandas {
 
   bandas : Banda[] = [];
+  colunasExibidas: string[] = ['nome', 'ano', 'imagem', 'acoes'];
 
   nome = '';
   ano = 0;
@@ -62,7 +64,7 @@ export class Bandas {
 
     this.bandaService.salvar(banda).subscribe({
       next: (resposta) =>{
-        this.bandas.push(resposta);
+        this.bandas = [...this.bandas, resposta];
 
         this.nome = '';
         this.ano = 0;
